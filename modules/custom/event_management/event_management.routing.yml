@@ -1,0 +1,61 @@
+event_management.event_add:
+  path: '/admin/content/event/add'
+  defaults:
+    _controller: '\Drupal\event_management\Controller\EventManagementController::add'
+    _title: 'Add Event'
+  requirements:
+    _permission: 'administer content'
+
+event_management.event_edit:
+  path: '/admin/content/event/{event}/edit'
+  defaults:
+    _controller: '\Drupal\event_management\Controller\EventManagementController::edit'
+    _title: 'Edit Event'
+  requirements:
+    _permission: 'administer content'
+  options:
+    parameters:
+      event:
+        type: entity:node
+
+event_management.event_delete:
+  path: '/admin/content/event/{event}/delete'
+  defaults:
+    _controller: '\Drupal\event_management\Controller\EventManagementController::delete'
+    _title: 'Delete Event'
+  requirements:
+    _permission: 'administer content'
+  options:
+    parameters:
+      event:
+        type: entity:node
+
+
+
+event_management.settings:
+  path: '/admin/config/event-management/settings'
+  defaults:
+    _form: '\Drupal\event_management\Form\EventManagementSettingsForm'
+    _title: 'Event Management Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+
+event_management.event_list:
+  path: '/events'
+  defaults:
+    _controller: '\Drupal\event_management\Controller\EventManagementController::listEvents'
+    _title: 'Events'
+  requirements:
+    _permission: 'access content'
+
+
+
+event_management.event_detail:
+  path: '/event/{event_id}'
+  defaults:
+    _controller: '\Drupal\event_management\Controller\EventDetailController::view'
+    _title: 'Event Detail'
+  requirements:
+    _permission: 'access content'
+    event_id: \d+  # Ensures event_id is a number

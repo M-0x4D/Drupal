@@ -1,0 +1,162 @@
+<?php
+
+use Drupal\Core\Database\Database;
+
+function event_management_install()
+{
+  // Create a table to log configuration changes.
+  $schema = Database::getConnection()->schema();
+
+  $schema->createTable('categories', [
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ]
+    ],
+    'primary key' => ['id'],
+  ]);
+
+  $schema->createTable('event_management_logs', [
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'config_name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'changed' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ]);
+
+  $schema->createTable('events', [
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'image' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'description' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
+      'category_id' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+//      'start_date' => [
+//        'type' => 'timestamp',
+//        'not null' => TRUE,
+//      ],
+//      'end_date' => array(
+//        'type' => 'datetime',
+//        'not null' => TRUE,
+//      ),
+    ],
+    'primary key' => ['id'],
+    'foreign keys' => array(
+      'category_id' => array(
+        'table' => 'categories',
+        'columns' => array('category_id' => 'id'),
+        'on delete' => 'CASCADE',
+      ),)
+  ]);
+
+  $database = \dataBase();
+
+  insertCategory($database);
+  insertEvent($database);
+
+}
+
+
+function insertEvent($database)
+{
+  $database->insert('events')
+    ->fields(array(
+      'title' => 'Sample Event 1',
+      'description' => 'This is the description for Sample Event 1.',
+      'image' => 'Conference Room A',
+      'category_id' => 1,
+    ))
+    ->execute();
+}
+function insertCategory($database)
+{
+  $database->insert('categories')
+    ->fields(array(
+      'name' => 'Sample Category 1',
+    ))
+    ->execute();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function event_management_uninstall()
+{
+  // Drop the log table.
+  $schema = Database::getConnection()->schema();
+  $schema->dropTable('event_management_logs');
+  $schema->dropTable('events');
+  $schema->dropTable('categories');
+
+}
+
+
+function dataBase()
+{
+  return \Drupal::database();
+}
+
+/**
+ * Implements hook_theme().
+ */
+function event_management_theme($existing, $type, $theme, $path)
+{
+  return [
+    'event_listing' => [
+      'variables' => ['events' => NULL],
+    ],
+
+    'event_detail' => [
+      'variables' => ['event' => NULL],
+    ],
+  ];
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function event_listing_theme($existing, $type, $theme, $path)
+{
+  return [
+    'latest_events_block' => [
+      'variables' => ['events' => NULL],
+      'template' => 'latest-events-block',
+      'path' => drupal_get_path('module', 'event_listing') . '/templates',
+    ],
+  ];
+}

@@ -1,0 +1,13 @@
+name: 'Event Management'
+type: module
+description: 'A simple custom module example.'
+core_version_requirement: ^10
+package: CustomModules
+version: 1.0.0
+dependencies:
+  - drupal:field
+  - drupal:text
+  - drupal:image
+  - drupal:datetime
+  - drupal:taxonomy
+  - drupal:node
