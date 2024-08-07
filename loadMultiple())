@@ -1,0 +1,1 @@
+ParseError: syntax error, unexpected token ";" in Drush\Commands\core\PhpCommands->evaluate() (line 1 of E:\drupal\drupal-10.0.0\vendor\drush\drush\src\Commands\core\PhpCommands.php(30) : eval()'d code).
