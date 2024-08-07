@@ -38,7 +38,7 @@ function event_management_install()
   $database = \dataBase();
 
   insertCategory($database);
-//  insertEvent($database);
+  insertEvent($database);
 
 }
 

@@ -43,7 +43,7 @@ class Event extends ContentEntityBase implements EntityInterface {
       ->setLabel(t('Description'))
       ->setRequired(TRUE);
 
-    $fields['image'] = BaseFieldDefinition::create('entity_reference')
+    $fields['image'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Image'))
       ->setRequired(FALSE)
       ->setSetting('target_type', 'file')

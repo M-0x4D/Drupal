@@ -22,12 +22,6 @@ class EventManagementController extends ControllerBase
   {
     $this->database = \Drupal::database();
   }
-//
-//  function dbConnection()
-//  {
-//    return \Drupal::database();
-//  }
-
 
   public function listEvents()
   {
