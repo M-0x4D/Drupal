@@ -57,14 +57,14 @@ class EventForm extends FormBase
     ];
 
     $form['start_date'] = [
-      '#type' => 'datetime',
+      '#type' => 'date',
       '#title' => $this->t('Start Date'),
       '#required' => TRUE,
       '#default_value' => $event ? $event->getStartDate() : '',
     ];
 
     $form['end_date'] = [
-      '#type' => 'datetime',
+      '#type' => 'date',
       '#title' => $this->t('End Date'),
       '#required' => TRUE,
       '#default_value' => $event ? $event->getEndDate() : '',
