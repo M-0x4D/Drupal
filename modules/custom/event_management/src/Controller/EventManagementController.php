@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\node\Entity\Node;
 use Symfony\Component\HttpFoundation\Request;
-
+use Drupal\event_management\Entity\Event;
 
 /**
  * Returns responses for Example Module routes.
@@ -20,26 +20,7 @@ class EventManagementController extends ControllerBase
   {
     $this->database = \Drupal::database();
   }
-
-  public function add(Request $request) {
-    // Add logic to handle event creation.
-    return [
-      '#title' => 'tkjh'
-    ];
-  }
-
-  public function edit(Node $event, Request $request) {
-    // Add logic to handle event editing.
-    dd($event);
-
-    return [
-    ];
-  }
-
-  public function delete(Node $event, Request $request) {
-    // Add logic to handle event deletion.
-  }
-
+//
 //  function dbConnection()
 //  {
 //    return \Drupal::database();
@@ -65,4 +46,48 @@ class EventManagementController extends ControllerBase
     }
   }
 
+
+  /**
+   * Display a list of events.
+   *
+   * @return array
+   */
+  public function list()
+  {
+
+    $database = $this->database;
+      $query = $database->select('events', 'e')
+        ->fields('e')
+        ->execute();
+      $events = $query->fetchAllAssoc('id');
+//    $events = Event::loadMultiple();
+
+    $header = [
+      'id' => $this->t('ID'),
+      'title' => $this->t('Title'),
+      'description' => $this->t('Description'),
+//      'start_date' => $this->t('Start Date'),
+//      'end_date' => $this->t('End Date'),
+      'category_id' => $this->t('Category ID'),
+    ];
+
+    $rows = [];
+    foreach ($events as $event) {
+      $rows[] = [
+        'id' => $event->id,
+        'title' => $event->title,
+        'description' => $event->description,
+//        'start_date' => $event->start_date->value,
+//        'end_date' => $event->end_date->value,
+        'category_id' => $event->category_id,
+      ];
+    }
+
+
+    return [
+      '#type' => 'table',
+      '#header' => $header,
+      '#rows' => $rows,
+    ];
+  }
 }
