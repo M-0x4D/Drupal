@@ -43,8 +43,7 @@ class EventManagementSettingsForm extends ConfigFormBase
 
       //log into logs table when this form submitted
 
-
-      $this->config('event_management.settings')
+      $this->configFactory->getEditable('event_management.settings')
         ->set('show_past_events', $form_state->getValue('show_past_events'))
         ->set('events_per_page', $form_state->getValue('events_per_page'))
         ->save();
