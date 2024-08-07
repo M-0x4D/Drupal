@@ -29,10 +29,15 @@ class EventEditForm extends FormBase
   /**
    * Builds the form.
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $id = NULL)
+  public function buildForm(array $form, FormStateInterface $form_state, Event $event = NULL)
   {
-    $event = Event::load((int)$id);
-
+    if ($event) {
+      // Load the event entity if not directly passed.
+      $event = $event->isNew() ? NULL : $event;
+    } else {
+      $event_id = \Drupal::routeMatch()->getParameter('event');
+      $event = Event::load($event_id);
+    }
 
     // If the event is not loaded, return an error message.
     if (!$event) {
