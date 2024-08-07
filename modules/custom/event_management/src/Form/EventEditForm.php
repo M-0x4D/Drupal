@@ -68,6 +68,20 @@ class EventEditForm extends FormBase
       '#default_value' => $event ? $event->get('category_id')->value : '',
     ];
 
+    $form['start_date'] = [
+      '#type' => 'datetime',
+      '#title' => $this->t('Start Date'),
+      '#required' => TRUE,
+      '#default_value' => $event ? $event->getStartDate() : '',
+    ];
+
+    $form['end_date'] = [
+      '#type' => 'datetime',
+      '#title' => $this->t('End Date'),
+      '#required' => TRUE,
+      '#default_value' => $event ? $event->getEndDate() : '',
+    ];
+
     // Add other fields as needed.
 
     $form['actions'] = [
@@ -93,7 +107,8 @@ class EventEditForm extends FormBase
       $event->set('title', $form_state->getValue('title'));
       $event->set('description', $form_state->getValue('description'));
       $event->set('category_id', $form_state->getValue('category_id'));
-
+      $event->set('start_date', $form_state->getValue('start_date'));
+      $event->set('end_date', $form_state->getValue('end_date'));
       // Save the entity.
       $event->save();
       \Drupal::messenger()->addMessage($this->t('Event updated successfully.'));

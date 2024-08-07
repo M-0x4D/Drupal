@@ -49,13 +49,13 @@ class Event extends ContentEntityBase implements EntityInterface {
       ->setSetting('max_length', 255)
       ->setRequired(FALSE);
 
-//    $fields['start_date'] = BaseFieldDefinition::create('datetime')
-//      ->setLabel(t('Start Date'))
-//      ->setRequired(TRUE);
-//
-//    $fields['end_date'] = BaseFieldDefinition::create('datetime')
-//      ->setLabel(t('End Date'))
-//      ->setRequired(TRUE);
+    $fields['start_date'] = BaseFieldDefinition::create('datetime')
+      ->setLabel(t('Start Date'))
+      ->setRequired(TRUE);
+
+    $fields['end_date'] = BaseFieldDefinition::create('datetime')
+      ->setLabel(t('End Date'))
+      ->setRequired(TRUE);
 
     $fields['category_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Category'))
@@ -125,19 +125,19 @@ class Event extends ContentEntityBase implements EntityInterface {
    * @return string
    *   The start date of the event.
    */
-//  public function getStartDate() {
-//    return $this->get('start_date')->value;
-//  }
-//
-//  /**
-//   * Set the start date.
-//   *
-//   * @param string $start_date
-//   *   The start date of the event.
-//   */
-//  public function setStartDate($start_date) {
-//    $this->set('start_date', $start_date);
-//  }
+  public function getStartDate() {
+    return $this->get('start_date')->value;
+  }
+
+  /**
+   * Set the start date.
+   *
+   * @param string $start_date
+   *   The start date of the event.
+   */
+  public function setStartDate($start_date) {
+    $this->set('start_date', $start_date);
+  }
 
   /**
    * Get the end date.
@@ -145,19 +145,19 @@ class Event extends ContentEntityBase implements EntityInterface {
    * @return string
    *   The end date of the event.
    */
-//  public function getEndDate() {
-//    return $this->get('end_date')->value;
-//  }
-//
-//  /**
-//   * Set the end date.
-//   *
-//   * @param string $end_date
-//   *   The end date of the event.
-//   */
-//  public function setEndDate($end_date) {
-//    $this->set('end_date', $end_date);
-//  }
+  public function getEndDate() {
+    return $this->get('end_date')->value;
+  }
+
+  /**
+   * Set the end date.
+   *
+   * @param string $end_date
+   *   The end date of the event.
+   */
+  public function setEndDate($end_date) {
+    $this->set('end_date', $end_date);
+  }
 
   /**
    * Get the category ID.

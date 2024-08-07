@@ -36,8 +36,8 @@ function event_management_install()
 
   $database = \dataBase();
 
-  insertCategory($database);
-  insertEvent($database);
+//  insertCategory($database);
+//  insertEvent($database);
 
 }
 
@@ -49,6 +49,8 @@ function insertEvent($database)
       'title' => 'Sample Event 1',
       'description' => 'This is the description for Sample Event 1.',
       'image' => 'Conference Room A',
+      'start_date' => date('y m d'),
+      'end_date' => date('y m d'),
       'category_id' => 1,
     ))
     ->execute();

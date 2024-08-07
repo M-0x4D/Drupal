@@ -96,6 +96,8 @@ class EventManagementController extends ControllerBase
       ['data' => t('Title'), 'field' => 'title'],
       ['data' => t('Description'), 'field' => 'description'],
       ['data' => t('Category ID'), 'field' => 'category_id'],
+      ['data' => t('Start Date'), 'field' => 'start_date'],
+      ['data' => t('End Date'), 'field' => 'end_date'],
       ['data' => t('Actions')],
     ];
 
@@ -114,9 +116,9 @@ class EventManagementController extends ControllerBase
         'id' => $event->id,
         'title' => $event->title,
         'description' => $event->description,
-//        'start_date' => $event->start_date->value,
-//        'end_date' => $event->end_date->value,
         'category_id' => $event->category_id,
+        'start_date' => $event->start_date,
+        'end_date' => $event->end_date,
         'actions' => [
           'data' => [
             '#markup' => $edit_link . ' | ' . $delete_link,

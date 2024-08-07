@@ -56,19 +56,19 @@ class EventForm extends FormBase
       '#default_value' => $event ? $event->getDescription() : '',
     ];
 
-//    $form['start_date'] = [
-//      '#type' => 'datetime',
-//      '#title' => $this->t('Start Date'),
-//      '#required' => TRUE,
-//      '#default_value' => $event ? $event->getStartDate() : '',
-//    ];
-//
-//    $form['end_date'] = [
-//      '#type' => 'datetime',
-//      '#title' => $this->t('End Date'),
-//      '#required' => TRUE,
-//      '#default_value' => $event ? $event->getEndDate() : '',
-//    ];
+    $form['start_date'] = [
+      '#type' => 'datetime',
+      '#title' => $this->t('Start Date'),
+      '#required' => TRUE,
+      '#default_value' => $event ? $event->getStartDate() : '',
+    ];
+
+    $form['end_date'] = [
+      '#type' => 'datetime',
+      '#title' => $this->t('End Date'),
+      '#required' => TRUE,
+      '#default_value' => $event ? $event->getEndDate() : '',
+    ];
 
     $form['category_id'] = [
       '#type' => 'number',
@@ -127,6 +127,8 @@ class EventForm extends FormBase
     $event->setImage($file_path);
     $event->setCategoryId($category_id);
     $event->setDescription($description);
+    $event->setStartDate($start_date);
+    $event->setEndDate($end_date);
     $event->save();
 
     \Drupal::messenger()->addMessage($this->t('Event saved successfully.'));
