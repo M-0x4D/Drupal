@@ -1,14 +1,7 @@
-<div class="latest-events-block">
-  {% if events %}
-    <ul>
-      {% for event in events %}
-        <li>
-          <h3><a href="{{ path('entity.node.canonical', {'node': event.id()}) }}">{{ event.label }}</a></h3>
-          <p>{{ event.getCreatedTime|date('F j, Y') }}</p>
-        </li>
-      {% endfor %}
-    </ul>
+<ul>
+  {% for event in events %}
+    <li>{{ event.title }}</li>
   {% else %}
-    <p>{{ 'No events found.'|t }}</p>
-  {% endif %}
-</div>
+    <li>{% trans %}No events available{% endtrans %}</li>
+  {% endfor %}
+</ul>

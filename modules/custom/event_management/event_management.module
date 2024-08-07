@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Database\Database;
+use Drupal\file\Entity\File;
 
 function event_management_install()
 {
@@ -36,7 +37,7 @@ function event_management_install()
 
   $database = \dataBase();
 
-//  insertCategory($database);
+  insertCategory($database);
 //  insertEvent($database);
 
 }
@@ -96,7 +97,29 @@ function event_management_theme($existing, $type, $theme, $path)
     'event_detail' => [
       'variables' => ['event' => NULL],
     ],
+
+    'latest_events' => [
+      'variables' => [
+        'events' => [],
+      ],
+      'template' => 'latest-events',
+    ],
   ];
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function event_management_preprocess_latest_events(&$variables) {
+  foreach ($variables['events'] as &$event) {
+    if (!empty($event->image)) {
+      $file = File::load($event->image);
+      if ($file) {
+        $event->image_url = file_create_url($file->getFileUri());
+      }
+    }
+  }
 }
 
 

@@ -43,11 +43,26 @@ class Event extends ContentEntityBase implements EntityInterface {
       ->setLabel(t('Description'))
       ->setRequired(TRUE);
 
-    $fields['image'] = BaseFieldDefinition::create('string')
+    $fields['image'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Image'))
-      ->setDescription(t('Path to the image file.'))
-      ->setSetting('max_length', 255)
-      ->setRequired(FALSE);
+      ->setRequired(FALSE)
+      ->setSetting('target_type', 'file')
+      ->setSetting('handler', 'default')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'file_default',
+        'weight' => 0,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'file_generic',
+        'weight' => 0,
+        'settings' => [
+          'file_extensions' => 'png jpg jpeg',
+          'file_directory' => 'event_images',
+          'max_filesize' => '5 MB',
+          'description_field' => FALSE,
+        ],
+      ]);
 
     $fields['start_date'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Start Date'))

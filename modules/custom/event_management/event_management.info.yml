@@ -11,3 +11,4 @@ dependencies:
   - drupal:datetime
   - drupal:taxonomy
   - drupal:node
+  - drupal:block
