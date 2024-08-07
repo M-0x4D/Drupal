@@ -1,25 +1,4 @@
-
 {% for event in events %}
-
-{#  <div class="event">#}
-
-
-{#    <h2><a href="{{ path('event_management.event_detail', {'event_id': event.id}) }}">{{ event.title }}</a></h2>#}
-{#    <div class="event-image">#}
-{#      {{ file_url(event.image.entity.uri.value) }}#}
-{#    </div>#}
-{#    <div class="event-description">#}
-{#      {{ event.description }}#}
-{#    </div>#}
-{#    <div class="event-time">#}
-{#      Start: {{ event.field_event_start_time.value }}<br>#}
-{#      End: {{ event.field_event_end_time.value }}#}
-{#    </div>#}
-{#    <div class="event-category">#}
-{#      {{ event.field_event_category.entity.label }}#}
-{#    </div>#}
-{#  </div>#}
-
   <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="{{ event.image }}" alt="Card image cap">
     <div class="card-body">

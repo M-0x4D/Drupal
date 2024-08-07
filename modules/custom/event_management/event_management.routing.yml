@@ -1,34 +1,35 @@
-event_management.event_add:
-  path: '/admin/content/event/add'
+event_management.list:
+  path: '/admin/events'
   defaults:
-    _controller: '\Drupal\event_management\Controller\EventManagementController::add'
+    _controller: '\Drupal\event_management\Controller\EventManagementController::list'
+    _title: 'Events'
+  requirements:
+    _permission: 'administer site configuration'
+
+event_management.add:
+  path: '/admin/events/add'
+  defaults:
+    _form: '\Drupal\event_management\Form\EventForm'
     _title: 'Add Event'
   requirements:
-    _permission: 'administer content'
+    _permission: 'administer site configuration'
 
-event_management.event_edit:
-  path: '/admin/content/event/{event}/edit'
+event_management.edit:
+  path: '/admin/events/{id}/edit'
   defaults:
-    _controller: '\Drupal\event_management\Controller\EventManagementController::edit'
+    _form: '\Drupal\event_management\Form\EventEditForm'
     _title: 'Edit Event'
   requirements:
-    _permission: 'administer content'
-  options:
-    parameters:
-      event:
-        type: entity:node
+    _permission: 'administer site configuration'
 
-event_management.event_delete:
-  path: '/admin/content/event/{event}/delete'
+event_management.delete:
+  path: '/admin/events/{id}/delete'
   defaults:
-    _controller: '\Drupal\event_management\Controller\EventManagementController::delete'
+    _form: '\Drupal\event_management\Form\EventDeleteForm'
     _title: 'Delete Event'
   requirements:
-    _permission: 'administer content'
-  options:
-    parameters:
-      event:
-        type: entity:node
+    _permission: 'administer site configuration'
+
 
 
 

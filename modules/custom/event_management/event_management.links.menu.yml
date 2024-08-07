@@ -4,3 +4,10 @@ event_management.settings:
   parent: system.admin_config_system
   route_name: event_management.settings
   weight: 100
+
+event_management.admin:
+  title: 'Event Management'
+  description: 'Manage events.'
+  parent: system.admin_content
+  route_name: event_management.list
+  weight: 100
