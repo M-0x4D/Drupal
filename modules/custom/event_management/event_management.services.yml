@@ -1,0 +1,6 @@
+services:
+  event_management.config_change_subscriber:
+    class: Drupal\event_management\EventSubscriber\ConfigChangeSubscriber
+    arguments: ['@database', '@current_user']
+    tags:
+      - { name: event_subscriber }

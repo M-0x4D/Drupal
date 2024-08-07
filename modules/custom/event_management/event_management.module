@@ -7,10 +7,18 @@ function event_management_install()
   // Create a table to log configuration changes.
   $schema = Database::getConnection()->schema();
 
-  $schema->createTable('event_management_logs', [
+  $schema->createTable('event_management_config_log', [
     'fields' => [
       'id' => [
         'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'uid' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'timestamp' => [
+        'type' => 'int',
         'not null' => TRUE,
       ],
       'config_name' => [
@@ -18,8 +26,8 @@ function event_management_install()
         'length' => 255,
         'not null' => TRUE,
       ],
-      'changed' => [
-        'type' => 'int',
+      'config_data' => [
+        'type' => 'text',
         'not null' => TRUE,
       ],
     ],
@@ -61,7 +69,7 @@ function event_management_uninstall()
 {
   // Drop the log table.
   $schema = Database::getConnection()->schema();
-  $schema->dropTable('event_management_logs');
+  $schema->dropTable('event_management_config_log');
   $schema->dropTable('events');
   $schema->dropTable('categories');
 

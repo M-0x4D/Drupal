@@ -15,20 +15,31 @@ event_management.add:
     _permission: 'administer site configuration'
 
 event_management.edit:
-  path: '/admin/events/{id}/edit'
+  path: '/admin/events/{event}/edit'
   defaults:
     _form: '\Drupal\event_management\Form\EventEditForm'
     _title: 'Edit Event'
   requirements:
     _permission: 'administer site configuration'
+    event: \d+
+
+#event_management.delete:
+#  path: '/admin/events/{id}/delete'
+#  defaults:
+#    _form: '\Drupal\event_management\Controller\EventManagementController::delete'
+#    _title: 'Delete Event'
+#  requirements:
+#    _permission: 'administer site configuration'
 
 event_management.delete:
-  path: '/admin/events/{id}/delete'
+  path: '/admin/events/{event}/delete'
   defaults:
-    _form: '\Drupal\event_management\Form\EventDeleteForm'
+    _controller: '\Drupal\event_management\Controller\EventDeleteController::delete'
     _title: 'Delete Event'
   requirements:
     _permission: 'administer site configuration'
+    event: \d+
+
 
 
 

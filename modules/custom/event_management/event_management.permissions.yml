@@ -1,0 +1,4 @@
+delete event:
+  title: 'Delete event'
+  description: 'Allow users to delete events.'
+  restrict access: TRUE
