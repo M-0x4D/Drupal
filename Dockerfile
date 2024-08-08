@@ -1,5 +1,5 @@
-# Stage 1: PHP-FPM
-FROM php:8.2-fpm AS php-fpm
+# Use the official PHP image with PHP 8.2
+FROM php:8.2-fpm
 
 # Install necessary packages
 RUN apt-get update && apt-get install -y \
@@ -25,26 +25,14 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy current directory contents into the container
+# Copy existing application directory contents
 COPY . /var/www/html
 
-# Set permissions for Drupal
+# Set permissions for the web server user
 RUN chown -R www-data:www-data /var/www/html
 
-# Stage 2: NGINX
-FROM nginx:latest AS nginx
+# Expose port 9000 for php-fpm
+EXPOSE 9000
 
-# Remove the default NGINX configuration file
-RUN rm /etc/nginx/conf.d/default.conf
-
-# Copy the custom NGINX configuration file
-COPY nginx.conf /etc/nginx/conf.d/
-
-# Copy files from PHP-FPM stage
-COPY --from=php-fpm /var/www/html /var/www/html
-
-# Expose port 80
-EXPOSE 80
-
-# Start NGINX
-CMD ["nginx", "-g", "daemon off;"]
+# Start php-fpm server
+CMD ["php-fpm"]
