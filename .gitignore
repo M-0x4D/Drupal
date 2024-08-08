@@ -1,11 +1,11 @@
 /vendor/
 composer.lock
-sites/*/settings*.php
-sites/*/services*.yml
-
-# Ignore paths that contain user-generated content.
-sites/*/files
-sites/*/private
-
-# Ignore multi-site test environment.
-sites/simpletest
+#sites/*/settings*.php
+#sites/*/services*.yml
+#
+## Ignore paths that contain user-generated content.
+#sites/*/files
+#sites/*/private
+#
+## Ignore multi-site test environment.
+#sites/simpletest
