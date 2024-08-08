@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\event_management\Controller;
+namespace Drupal\event_management\Controller\Front;
 
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\Response;

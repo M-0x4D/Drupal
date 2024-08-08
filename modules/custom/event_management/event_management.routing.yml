@@ -1,7 +1,7 @@
 event_management.list:
   path: '/admin/events'
   defaults:
-    _controller: '\Drupal\event_management\Controller\EventManagementController::list'
+    _controller: '\Drupal\event_management\Controller\Admin\EventManagementController::list'
     _title: 'Events'
   requirements:
     _permission: 'administer site configuration'
@@ -34,7 +34,7 @@ event_management.edit:
 event_management.delete:
   path: '/admin/events/{event}/delete'
   defaults:
-    _controller: '\Drupal\event_management\Controller\EventDeleteController::delete'
+    _controller: '\Drupal\event_management\Controller\Admin\EventManagementController::delete'
     _title: 'Delete Event'
   requirements:
     _permission: 'administer site configuration'
@@ -56,7 +56,7 @@ event_management.settings:
 event_management.event_list:
   path: '/events'
   defaults:
-    _controller: '\Drupal\event_management\Controller\EventManagementController::listEvents'
+    _controller: '\Drupal\event_management\Controller\Front\EventManagementController::listEvents'
     _title: 'Events'
   requirements:
     _permission: 'access content'
@@ -64,9 +64,9 @@ event_management.event_list:
 
 
 event_management.event_detail:
-  path: '/event/{event_id}'
+  path: '/events/{event_id}'
   defaults:
-    _controller: '\Drupal\event_management\Controller\EventDetailController::view'
+    _controller: '\Drupal\event_management\Controller\Front\EventDetailController::view'
     _title: 'Event Detail'
   requirements:
     _permission: 'access content'
