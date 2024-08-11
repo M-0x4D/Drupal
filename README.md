@@ -1,6 +1,8 @@
 
 # Drupal-Task
 
+Make sure you have installed php version 8.2 and mysql version 8.0
+
 before we start take into consideration this CMS has a strong cache and if you try something and does not work you should run this command 
 
 ```bash
